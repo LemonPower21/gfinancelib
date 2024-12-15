@@ -153,7 +153,7 @@ ychart("AAPL")
 ynews()
 
 # Get the exchange rate for USD to EUR
-print(change("USDJPY"))
+print(change("USD"))
 
 # Get the all-time high for AAPL
 print(ath("AAPL"))
