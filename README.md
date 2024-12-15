@@ -175,5 +175,4 @@ clean()
   ```bash
   pip install yfinance requests ta pandas
   ```
-
-Feel free to enhance and modify this documentation based on your specific requirements and any additional details you want to include! 😊
+Created by Francesco Vito Giotta (LemonPower21)
