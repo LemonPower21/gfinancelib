@@ -1,7 +1,11 @@
 # Financial Analysis Library
 
+## Created by: Francesco Vito Giotta (LemonPower21)
+
+This library was created by Francesco Vito Giotta to provide a set of tools for financial analysis using Python. It leverages the `yfinance` and `ta` libraries for retrieving stock data, calculating technical indicators, and sending email notifications.
+
 ## Overview
-This library provides a set of functions for financial analysis using the `yfinance` and `ta` libraries. It includes functionalities for retrieving stock prices, calculating financial indicators, and sending notifications. 
+This library provides a set of functions for financial analysis using the `yfinance` and `ta` libraries. It includes functionalities for retrieving stock prices, calculating financial indicators, and sending notifications.
 
 ## Functions
 
