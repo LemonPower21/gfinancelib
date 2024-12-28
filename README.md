@@ -1,50 +1,50 @@
-# Financial Data Analysis Library
+# Financial Analysis Library
 
 ## Overview
-This library provides a set of functions for financial analysis using the `yfinance` and `ta` libraries. It includes functionalities for retrieving stock prices, calculating financial indicators, sending notifications, and more.
+This library provides a set of functions for financial analysis using the `yfinance` and `ta` libraries. It includes functionalities for retrieving stock prices, calculating financial indicators, and sending notifications. 
 
 ## Functions
 
 ### `bid(ticker)`
-Fetches the bid price of the specified ticker.
+Fetches the bid price of the specified stock ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
 - **Returns:**
-  - `float`: The bid price, or `None` if an error occurs.
+  - `float`: The bid price, or `0` if not available.
 
 ### `ask(ticker)`
-Fetches the ask price of the specified ticker.
+Fetches the ask price of the specified stock ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
 - **Returns:**
-  - `float`: The ask price, or `None` if an error occurs.
+  - `float`: The ask price, or `0` if not available.
 
 ### `start()`
-Starts a timer and returns the current time.
+Starts a timer to track elapsed time.
 
 - **Returns:**
-  - `float`: The start time in seconds.
+  - `float`: The start time (epoch timestamp).
 
 ### `stop(start)`
-Stops the timer and returns the elapsed time in years, months, days, hours, minutes, and seconds.
+Stops the timer and calculates the elapsed time from the start.
 
 - **Parameters:**
-  - `start` (float): The start time returned from the `start()` function.
+  - `start` (float): The start time returned by the `start()` function.
 - **Returns:**
-  - `tuple`: Elapsed time in years, months, days, hours, minutes, and seconds.
+  - `tuple`: The elapsed time in years, months, days, hours, minutes, and seconds.
 
 ### `log(text)`
-Logs an update with a timestamp to a `log.txt` file.
+Logs a message to a log file and waits for network connectivity before doing so.
 
 - **Parameters:**
-  - `text` (str): The text to log.
-- **Returns:**
-  - None
+  - `text` (str): The message to log.
+- **Returns:** 
+  - `None`
 
 ### `last(ticker)`
-Fetches the last closing price of the specified ticker.
+Fetches the last closing price for the specified ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
@@ -56,9 +56,9 @@ Calculates the Relative Strength Index (RSI) for the specified ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
-  - `periods` (int): The number of periods to use for the RSI calculation.
-  - `chart` (str): The period of chart data to use.
-  - `timeframe` (str): The interval of the chart data.
+  - `periods` (int): The number of periods for the RSI calculation.
+  - `chart` (str): The chart period (e.g., "1y", "6mo").
+  - `timeframe` (str): The time interval (e.g., "1m", "5m").
 - **Returns:**
   - `float`: The RSI value, or `None` if an error occurs.
 
@@ -67,39 +67,43 @@ Calculates the Exponential Moving Average (EMA) for the specified ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
-  - `periods` (int): The number of periods to use for the EMA calculation.
-  - `chart` (str): The period of chart data to use.
-  - `timeframe` (str): The interval of the chart data.
+  - `periods` (int): The number of periods for the EMA calculation.
+  - `chart` (str): The chart period (e.g., "1y", "6mo").
+  - `timeframe` (str): The time interval (e.g., "1m", "5m").
 - **Returns:**
   - `float`: The EMA value, or `None` if an error occurs.
 
 ### `clean()`
-Clears the console screen.
+Clears the terminal screen.
 
-- **Returns:** None
+- **Returns:**
+  - `None`
 
 ### `email(server, port, user, password, recipient, subject, body)`
-Sends an email with the log file attached to a recipient using an SMTP server.
+Sends an email with an optional attachment.
 
 - **Parameters:**
-  - `server` (str): The SMTP server address.
-  - `port` (int): The SMTP server port.
+  - `server` (str): SMTP server address.
+  - `port` (int): SMTP port number.
   - `user` (str): The sender's email address.
   - `password` (str): The sender's email password.
   - `recipient` (str): The recipient's email address.
-  - `subject` (str): The subject of the email.
-  - `body` (str): The body of the email.
+  - `subject` (str): The email subject.
+  - `body` (str): The email body.
 - **Returns:**
-  - None
+  - `None`
 
-### `ychart(ticker)`
-Opens the Yahoo Finance chart for the specified ticker in a web browser.
+### `ychart()`
+Opens the Yahoo Finance chart page.
 
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
+- **Returns:**
+  - `None`
 
 ### `ynews()`
-Opens the Yahoo Finance news page in a web browser.
+Opens the Yahoo Finance news page.
+
+- **Returns:**
+  - `None`
 
 ### `change(pair)`
 Fetches the exchange rate for the specified currency pair.
@@ -123,7 +127,7 @@ Fetches the currency in which the specified ticker is traded.
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
 - **Returns:**
-  - `str`: The currency, or `None` if an error occurs.
+  - `str`: The currency symbol, or `None` if an error occurs.
 
 ### `exchange(ticker)`
 Fetches the exchange where the specified ticker is traded.
@@ -131,15 +135,15 @@ Fetches the exchange where the specified ticker is traded.
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
 - **Returns:**
-  - `str`: The exchange, or `None` if an error occurs.
+  - `str`: The exchange name, or `None` if an error occurs.
 
 ### `volume(ticker)`
-Fetches the trading volume of the specified ticker.
+Fetches the real-time trading volume of the specified ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
 - **Returns:**
-  - `int`: The trading volume, or `None` if an error occurs.
+  - `int`: The real-time trading volume, or `None` if an error occurs.
 
 ### `marketcap(ticker)`
 Fetches the market capitalization of the specified ticker.
@@ -147,10 +151,10 @@ Fetches the market capitalization of the specified ticker.
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
 - **Returns:**
-  - `float`: The market capitalization, or `None` if an error occurs.
+  - `int`: The market cap, or `None` if an error occurs.
 
 ### `shares(ticker)`
-Fetches the number of shares outstanding for the specified ticker.
+Fetches the number of outstanding shares for the specified ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
@@ -168,35 +172,36 @@ print(bid("AAPL"))
 # Get the ask price of AAPL
 print(ask("AAPL"))
 
-# Start a timer and stop after 2 seconds
+# Start the timer
 start_time = start()
-time.sleep(2)
-elapsed_time = stop(start_time)
-print(f"Elapsed time: {elapsed_time} years, months, days, hours, minutes, seconds")
 
-# Log an update
-log("Stock market update: AAPL is trending up.")
+# Stop the timer and get elapsed time
+elapsed_time = stop(start_time)
+print(f"Elapsed Time: {elapsed_time}")
+
+# Log a message
+log("Started analysis of AAPL")
 
 # Get the last closing price of AAPL
 print(last("AAPL"))
 
 # Calculate the RSI for AAPL
-print(rsi("AAPL", 14, "2y", "1h"))
+print(rsi("AAPL", 14, "1y", "1h"))
 
 # Calculate the EMA for AAPL
-print(ema("AAPL", 200, "2y", "1h"))
+print(ema("AAPL", 200, "1y", "1h"))
 
-# Send an email with the log file
-email("smtp.gmail.com", 587, "your_email@gmail.com", "your_email_password", "recipient_email@example.com", "Stock Data Update", "Please find the stock data update attached.")
+# Send an email
+email("smtp.gmail.com", 587, "your_email@gmail.com", "password", "recipient_email@gmail.com", "Subject", "Email body")
 
-# Open the Yahoo Finance chart for AAPL
-ychart("AAPL")
+# Open the Yahoo Finance chart page
+ychart()
 
-# Open Yahoo Finance news page
+# Open the Yahoo Finance news page
 ynews()
 
 # Get the exchange rate for USD to EUR
-print(change("USD"))
+print(change("USDEUR"))
 
 # Get the all-time high for AAPL
 print(ath("AAPL"))
@@ -207,36 +212,11 @@ print(currency("AAPL"))
 # Get the exchange where AAPL is traded
 print(exchange("AAPL"))
 
-# Get the trading volume of AAPL
+# Get the real-time trading volume for AAPL
 print(volume("AAPL"))
 
-# Get the market cap of AAPL
+# Get the market cap for AAPL
 print(marketcap("AAPL"))
 
-# Get the number of shares outstanding for AAPL
+# Get the number of outstanding shares for AAPL
 print(shares("AAPL"))
-
-# Clear the console screen
-clean()
-## Additional Information
-
-- **Dependencies**: This library requires the following Python libraries:
-  - `yfinance`
-  - `ta`
-  - `time`
-  - `os`
-  - `platform`
-  - `smtplib`
-  - `webbrowser`
-  - `datetime`
-  - and other related libraries.
-
-**Installation**: You can install the necessary modules using:
-
-  ```bash
-  pip install yfinance ta
-
-
-- Created by Francesco Vito Giotta (LemonPower21)
-- LinkedIn: https://www.linkedin.com/in/francesco-vito-giotta-969938314/
-- GitHub: https://github.com/LemonPower21/gfinancelib
