@@ -1,86 +1,113 @@
-# Library Documentation
+# Financial Analysis Library
+
+## Created by: Francesco Vito Giotta (LemonPower21)
+
+This library was created by Francesco Vito Giotta to provide a set of tools for financial analysis using Python. It leverages the `yfinance` and `ta` libraries for retrieving stock data, calculating technical indicators, and sending email notifications.
 
 ## Overview
 This library provides a set of functions for financial analysis using the `yfinance` and `ta` libraries. It includes functionalities for retrieving stock prices, calculating financial indicators, and sending notifications.
 
 ## Functions
 
+### `bid(ticker)`
+Fetches the bid price of the specified stock ticker.
+
+- **Parameters:**
+  - `ticker` (str): The ticker symbol of the stock.
+- **Returns:**
+  - `float`: The bid price, or `0` if not available.
+
+### `ask(ticker)`
+Fetches the ask price of the specified stock ticker.
+
+- **Parameters:**
+  - `ticker` (str): The ticker symbol of the stock.
+- **Returns:**
+  - `float`: The ask price, or `0` if not available.
+
+### `start()`
+Starts a timer to track elapsed time.
+
+- **Returns:**
+  - `float`: The start time (epoch timestamp).
+
+### `stop(start)`
+Stops the timer and calculates the elapsed time from the start.
+
+- **Parameters:**
+  - `start` (float): The start time returned by the `start()` function.
+- **Returns:**
+  - `tuple`: The elapsed time in years, months, days, hours, minutes, and seconds.
+
+### `log(text)`
+Logs a message to a log file and waits for network connectivity before doing so.
+
+- **Parameters:**
+  - `text` (str): The message to log.
+- **Returns:** 
+  - `None`
+
 ### `last(ticker)`
-Fetches the last closing price of the specified ticker.
+Fetches the last closing price for the specified ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
 - **Returns:**
   - `float`: The last closing price, or `None` if an error occurs.
 
-### `roi(ticker, buy)`
-Calculates the Return on Investment (ROI) for the specified ticker and buy price.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-  - `buy` (float): The buy price of the stock.
-- **Returns:**
-  - `float`: The ROI in percentage, or `None` if an error occurs.
-
-### `rsi(ticker, periods, chart_data, timeframe)`
+### `rsi(ticker, periods, chart, timeframe)`
 Calculates the Relative Strength Index (RSI) for the specified ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
-  - `periods` (int): The number of periods to use for the RSI calculation.
-  - `chart_data` (str): The period of chart data to use.
-  - `timeframe` (str): The interval of the chart data.
+  - `periods` (int): The number of periods for the RSI calculation.
+  - `chart` (str): The chart period (e.g., "1y", "6mo").
+  - `timeframe` (str): The time interval (e.g., "1m", "5m").
 - **Returns:**
   - `float`: The RSI value, or `None` if an error occurs.
 
-### `ema(ticker, periods, chart_data, timeframe)`
+### `ema(ticker, periods, chart, timeframe)`
 Calculates the Exponential Moving Average (EMA) for the specified ticker.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
-  - `periods` (int): The number of periods to use for the EMA calculation.
-  - `chart_data` (str): The period of chart data to use.
-  - `timeframe` (str): The interval of the chart data.
+  - `periods` (int): The number of periods for the EMA calculation.
+  - `chart` (str): The chart period (e.g., "1y", "6mo").
+  - `timeframe` (str): The time interval (e.g., "1m", "5m").
 - **Returns:**
   - `float`: The EMA value, or `None` if an error occurs.
 
-### `profit(ticker, buy, qty)`
-Calculates the profit for the specified ticker, buy price, and quantity.
+### `clean()`
+Clears the terminal screen.
 
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-  - `buy` (float): The buy price of the stock.
-  - `qty` (float): The quantity of the stock.
 - **Returns:**
-  - `float`: The profit, or `None` if an error occurs.
+  - `None`
 
-### `invested(buy, qty)`
-Calculates the invested amount for the specified buy price and quantity.
+### `email(server, port, user, password, recipient, subject, body)`
+Sends an email with an optional attachment.
 
 - **Parameters:**
-  - `buy` (float): The buy price of the stock.
-  - `qty` (float): The quantity of the stock.
+  - `server` (str): SMTP server address.
+  - `port` (int): SMTP port number.
+  - `user` (str): The sender's email address.
+  - `password` (str): The sender's email password.
+  - `recipient` (str): The recipient's email address.
+  - `subject` (str): The email subject.
+  - `body` (str): The email body.
 - **Returns:**
-  - `float`: The invested amount, or `None` if an error occurs.
+  - `None`
 
-### `telegram(token, id, message)`
-Sends a message via Telegram.
+### `ychart()`
+Opens the Yahoo Finance chart page.
 
-- **Parameters:**
-  - `token` (str): The Telegram bot token.
-  - `id` (str): The chat ID.
-  - `message` (str): The message to send.
 - **Returns:**
-  - `dict`: The response from the Telegram API, or `None` if an error occurs.
-
-### `ychart(ticker)`
-Opens the Yahoo Finance chart for the specified ticker in a web browser.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
+  - `None`
 
 ### `ynews()`
-Opens the Yahoo Finance news page in a web browser.
+Opens the Yahoo Finance news page.
+
+- **Returns:**
+  - `None`
 
 ### `change(pair)`
 Fetches the exchange rate for the specified currency pair.
@@ -98,84 +125,102 @@ Fetches the all-time high (ATH) for the specified ticker.
 - **Returns:**
   - `float`: The all-time high value, or `None` if an error occurs.
 
-### `get_currency(ticker)`
+### `currency(ticker)`
 Fetches the currency in which the specified ticker is traded.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
 - **Returns:**
-  - `str`: The currency, or `None` if an error occurs.
+  - `str`: The currency symbol, or `None` if an error occurs.
 
-### `get_exchange(ticker)`
+### `exchange(ticker)`
 Fetches the exchange where the specified ticker is traded.
 
 - **Parameters:**
   - `ticker` (str): The ticker symbol of the stock.
 - **Returns:**
-  - `str`: The exchange, or `None` if an error occurs.
+  - `str`: The exchange name, or `None` if an error occurs.
 
-### `clean()`
-Clears the console screen.
+### `volume(ticker)`
+Fetches the real-time trading volume of the specified ticker.
 
-- **Parameters:** None
-- **Returns:** None
+- **Parameters:**
+  - `ticker` (str): The ticker symbol of the stock.
+- **Returns:**
+  - `int`: The real-time trading volume, or `None` if an error occurs.
+
+### `marketcap(ticker)`
+Fetches the market capitalization of the specified ticker.
+
+- **Parameters:**
+  - `ticker` (str): The ticker symbol of the stock.
+- **Returns:**
+  - `int`: The market cap, or `None` if an error occurs.
+
+### `shares(ticker)`
+Fetches the number of outstanding shares for the specified ticker.
+
+- **Parameters:**
+  - `ticker` (str): The ticker symbol of the stock.
+- **Returns:**
+  - `int`: The number of shares outstanding, or `None` if an error occurs.
 
 ## Usage Examples
 
 Here are a few examples to help you get started:
 
 ```python
+# Get the bid price of AAPL
+print(bid("AAPL"))
+
+# Get the ask price of AAPL
+print(ask("AAPL"))
+
+# Start the timer
+start_time = start()
+
+# Stop the timer and get elapsed time
+elapsed_time = stop(start_time)
+print(f"Elapsed Time: {elapsed_time}")
+
+# Log a message
+log("Started analysis of AAPL")
+
 # Get the last closing price of AAPL
 print(last("AAPL"))
 
-# Calculate the ROI for AAPL with a buy price of 120
-print(roi("AAPL", 120))
-
 # Calculate the RSI for AAPL
-print(rsi("AAPL", 14, "2y", "1h"))
+print(rsi("AAPL", 14, "1y", "1h"))
 
 # Calculate the EMA for AAPL
-print(ema("AAPL", 200, "2y", "1h"))
+print(ema("AAPL", 200, "1y", "1h"))
 
-# Calculate the profit for AAPL
-print(profit("AAPL", 120, 10))
+# Send an email
+email("smtp.gmail.com", 587, "your_email@gmail.com", "password", "recipient_email@gmail.com", "Subject", "Email body")
 
-# Calculate the invested amount
-print(invested(120, 10))
+# Open the Yahoo Finance chart page
+ychart()
 
-# Send a Telegram message
-telegram("<your_token>", "<your_chat_id>", "Hello from the bot!")
-
-# Open Yahoo Finance chart for AAPL
-ychart("AAPL")
-
-# Open Yahoo Finance news page
+# Open the Yahoo Finance news page
 ynews()
 
 # Get the exchange rate for USD to EUR
-print(change("USD"))
+print(change("USDEUR"))
 
 # Get the all-time high for AAPL
 print(ath("AAPL"))
 
 # Get the currency in which AAPL is traded
-print(get_currency("AAPL"))
+print(currency("AAPL"))
 
 # Get the exchange where AAPL is traded
-print(get_exchange("AAPL"))
+print(exchange("AAPL"))
 
-# Clear the console screen
-clean()
-```
+# Get the real-time trading volume for AAPL
+print(volume("AAPL"))
 
-## Additional Information
+# Get the market cap for AAPL
+print(marketcap("AAPL"))
 
-- **Dependencies**: This library requires the `yfinance`, `requests`, `ta`, `pandas`, and `webbrowser` modules.
-- **Installation**: You can install the necessary modules using:
-  ```bash
-  pip install yfinance requests ta pandas
-  ```
-
-- Created by Francesco Vito Giotta (LemonPower21)
-- LinkedIn: https://www.linkedin.com/in/francesco-vito-giotta-969938314/
-- GitHub: https://github.com/LemonPower21/gfinancelib
+# Get the number of outstanding shares for AAPL
+print(shares("AAPL"))
