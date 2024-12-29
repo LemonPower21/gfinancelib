@@ -1,226 +1,153 @@
-# Financial Analysis Library
+# Stock & Financial Data Analysis Script
 
+This Python script allows you to fetch, analyze, and display stock-related information for various tickers. The script leverages the `yfinance` library to retrieve stock data, calculates technical indicators like EMA (Exponential Moving Average) and RSI (Relative Strength Index), and provides detailed market information such as bid/ask prices, volume, market cap, and more.
 ## Created by: Francesco Vito Giotta (LemonPower21)
 
 This library was created by Francesco Vito Giotta to provide a set of tools for financial analysis using Python. It leverages the `yfinance` and `ta` libraries for retrieving stock data, calculating technical indicators, and sending email notifications.
+## Features
 
-## Overview
-This library provides a set of functions for financial analysis using the `yfinance` and `ta` libraries. It includes functionalities for retrieving stock prices, calculating financial indicators, and sending notifications.
+- **Stock Data Retrieval**: Fetches live stock data (bid, ask, volume, etc.) for a given ticker symbol.
+- **Technical Indicators**: Computes key technical indicators like **RSI**, **EMA**, and **ATH** (All-Time High).
+- **Market Information**: Provides details such as market cap, shares outstanding, exchange, currency, etc.
+- **Real-time Alerts**: Optionally sends alerts or logs when certain conditions are met.
+- **Email Notifications**: Sends email alerts with detailed data logs attached.
+- **Customizable Output**: Displays stock information in a user-friendly formatted table.
+
+## Requirements
+
+- Python 3.x
+- `yfinance` library
+- `ta` (technical analysis library)
+- `smtplib` for sending emails
+- `colorama` for colored output in the terminal
+
+You can install the required libraries by running the following:
+
+```bash
+pip install yfinance ta colorama
+```
 
 ## Functions
 
 ### `bid(ticker)`
-Fetches the bid price of the specified stock ticker.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-- **Returns:**
-  - `float`: The bid price, or `0` if not available.
+- **Purpose**: Retrieves the current bid price for the specified stock ticker.
+- **Returns**: The bid price (float) or `0` if unavailable.
 
 ### `ask(ticker)`
-Fetches the ask price of the specified stock ticker.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-- **Returns:**
-  - `float`: The ask price, or `0` if not available.
+- **Purpose**: Retrieves the current ask price for the specified stock ticker.
+- **Returns**: The ask price (float) or `0` if unavailable.
 
 ### `start()`
-Starts a timer to track elapsed time.
-
-- **Returns:**
-  - `float`: The start time (epoch timestamp).
+- **Purpose**: Records the start time for calculating the elapsed time.
 
 ### `stop(start)`
-Stops the timer and calculates the elapsed time from the start.
-
-- **Parameters:**
-  - `start` (float): The start time returned by the `start()` function.
-- **Returns:**
-  - `tuple`: The elapsed time in years, months, days, hours, minutes, and seconds.
+- **Purpose**: Calculates and returns the elapsed time since the provided `start` time.
+- **Returns**: Elapsed time in years, months, days, hours, minutes, and seconds.
 
 ### `log(text)`
-Logs a message to a log file and waits for network connectivity before doing so.
-
-- **Parameters:**
-  - `text` (str): The message to log.
-- **Returns:** 
-  - `None`
+- **Purpose**: Logs events to a file (`log.txt`).
+- **Returns**: None.
 
 ### `last(ticker)`
-Fetches the last closing price for the specified ticker.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-- **Returns:**
-  - `float`: The last closing price, or `None` if an error occurs.
+- **Purpose**: Retrieves the last closing price for the specified ticker.
+- **Returns**: The last closing price (float) or `None` if unavailable.
 
 ### `rsi(ticker, periods, chart, timeframe)`
-Calculates the Relative Strength Index (RSI) for the specified ticker.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-  - `periods` (int): The number of periods for the RSI calculation.
-  - `chart` (str): The chart period (e.g., "1y", "6mo").
-  - `timeframe` (str): The time interval (e.g., "1m", "5m").
-- **Returns:**
-  - `float`: The RSI value, or `None` if an error occurs.
+- **Purpose**: Calculates the RSI (Relative Strength Index) for the specified ticker.
+- **Returns**: The RSI value (float) or `None` if unavailable.
 
 ### `ema(ticker, periods, chart, timeframe)`
-Calculates the Exponential Moving Average (EMA) for the specified ticker.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-  - `periods` (int): The number of periods for the EMA calculation.
-  - `chart` (str): The chart period (e.g., "1y", "6mo").
-  - `timeframe` (str): The time interval (e.g., "1m", "5m").
-- **Returns:**
-  - `float`: The EMA value, or `None` if an error occurs.
+- **Purpose**: Calculates the Exponential Moving Average (EMA) for the specified ticker.
+- **Returns**: The EMA value (float) or `None` if unavailable.
 
 ### `clean()`
-Clears the terminal screen.
-
-- **Returns:**
-  - `None`
+- **Purpose**: Clears the terminal screen (cross-platform support).
 
 ### `email(server, port, user, password, recipient, subject, body)`
-Sends an email with an optional attachment.
+- **Purpose**: Sends an email with the log file attached.
+- **Returns**: None.
 
-- **Parameters:**
-  - `server` (str): SMTP server address.
-  - `port` (int): SMTP port number.
-  - `user` (str): The sender's email address.
-  - `password` (str): The sender's email password.
-  - `recipient` (str): The recipient's email address.
-  - `subject` (str): The email subject.
-  - `body` (str): The email body.
-- **Returns:**
-  - `None`
-
-### `ychart()`
-Opens the Yahoo Finance chart page.
-
-- **Returns:**
-  - `None`
+### `ychart(ticker)`
+- **Purpose**: Opens the Yahoo Finance chart for the specified ticker in a browser.
+- **Returns**: None.
 
 ### `ynews()`
-Opens the Yahoo Finance news page.
-
-- **Returns:**
-  - `None`
+- **Purpose**: Opens the Yahoo Finance news page in a browser.
+- **Returns**: None.
 
 ### `change(pair)`
-Fetches the exchange rate for the specified currency pair.
-
-- **Parameters:**
-  - `pair` (str): The currency pair (e.g., "USDJPY").
-- **Returns:**
-  - `float`: The exchange rate, or `None` if an error occurs.
+- **Purpose**: Retrieves the exchange rate for a given currency pair against EUR.
+- **Returns**: Exchange rate (float) or `None` if unavailable.
 
 ### `ath(ticker)`
-Fetches the all-time high (ATH) for the specified ticker.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-- **Returns:**
-  - `float`: The all-time high value, or `None` if an error occurs.
+- **Purpose**: Retrieves the All-Time High (ATH) for the specified ticker.
+- **Returns**: ATH value (float) or `None` if unavailable.
 
 ### `currency(ticker)`
-Fetches the currency in which the specified ticker is traded.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-- **Returns:**
-  - `str`: The currency symbol, or `None` if an error occurs.
+- **Purpose**: Retrieves the currency used by the stock ticker.
+- **Returns**: Currency symbol (e.g., USD, EUR) or `None` if unavailable.
 
 ### `exchange(ticker)`
-Fetches the exchange where the specified ticker is traded.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-- **Returns:**
-  - `str`: The exchange name, or `None` if an error occurs.
+- **Purpose**: Retrieves the exchange name for the specified ticker.
+- **Returns**: Exchange name (string) or `None` if unavailable.
 
 ### `volume(ticker)`
-Fetches the real-time trading volume of the specified ticker.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-- **Returns:**
-  - `int`: The real-time trading volume, or `None` if an error occurs.
+- **Purpose**: Retrieves the real-time market volume for the specified ticker.
+- **Returns**: Volume (integer) or `None` if unavailable.
 
 ### `marketcap(ticker)`
-Fetches the market capitalization of the specified ticker.
-
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-- **Returns:**
-  - `int`: The market cap, or `None` if an error occurs.
+- **Purpose**: Retrieves the market capitalization for the specified ticker.
+- **Returns**: Market cap (float) or `None` if unavailable.
 
 ### `shares(ticker)`
-Fetches the number of outstanding shares for the specified ticker.
+- **Purpose**: Retrieves the shares outstanding for the specified ticker.
+- **Returns**: Shares outstanding (integer) or `None` if unavailable.
 
-- **Parameters:**
-  - `ticker` (str): The ticker symbol of the stock.
-- **Returns:**
-  - `int`: The number of shares outstanding, or `None` if an error occurs.
+### `invested(qty, buyprice)`
+- **Purpose**: Calculates the total amount invested based on the quantity and buy price.
+- **Returns**: Investment amount (float) or `None` if unavailable.
 
-## Usage Examples
+### `roi(buyprice, lastprice)`
+- **Purpose**: Calculates the Return on Investment (ROI) percentage based on the buy price and last price.
+- **Returns**: ROI percentage (float) or `None` if unavailable.
 
-Here are a few examples to help you get started:
+### `pandl(roiperc, invested)`
+- **Purpose**: Calculates the profit or loss based on the ROI percentage and investment.
+- **Returns**: Profit or loss (float) or `None` if unavailable.
 
-```python
-# Get the bid price of AAPL
-print(bid("AAPL"))
+### `initprint()`
+- **Purpose**: Initializes the table header for formatted output in the terminal.
+- **Returns**: None.
 
-# Get the ask price of AAPL
-print(ask("AAPL"))
+### `printall(...)`
+- **Purpose**: Prints detailed stock information including price, indicators, market data, and elapsed time in a formatted table.
+- **Returns**: None.
 
-# Start the timer
-start_time = start()
+## Usage Example
 
-# Stop the timer and get elapsed time
-elapsed_time = stop(start_time)
-print(f"Elapsed Time: {elapsed_time}")
+Here's how to use the script:
 
-# Log a message
-log("Started analysis of AAPL")
+1. **Get stock data**:  
+   Call the functions for your desired ticker, e.g., `bid('AAPL')` or `rsi('AAPL', 14, '1d', '5m')`.
 
-# Get the last closing price of AAPL
-print(last("AAPL"))
+2. **Track a stock's performance**:  
+   Use `printall(...)` to display the stock's information in a table format.
 
-# Calculate the RSI for AAPL
-print(rsi("AAPL", 14, "1y", "1h"))
+3. **Email log**:  
+   Use the `email(...)` function to send an email with the logs attached.
 
-# Calculate the EMA for AAPL
-print(ema("AAPL", 200, "1y", "1h"))
+4. **View charts and news**:  
+   Use `ychart()` and `ynews()` to view the latest stock charts and news.
 
-# Send an email
-email("smtp.gmail.com", 587, "your_email@gmail.com", "password", "recipient_email@gmail.com", "Subject", "Email body")
+## Example Output
 
-# Open the Yahoo Finance chart page
-ychart()
+```
+Ticker      Exchange   Currency   Change    Quantity   Invested   Buy     Last     TP(%)    P&L(%)  P&L(€)  EMA      RSI     ATH      Bid      Ask      Spread   Shares   Volume   MarketCap      Elapsed time
+AAPL        NASDAQ     USD        0.0056    100        15000.00   150.00  153.20   2.00     2.14    320.00  150.10   45.32   157.89   152.50   153.50   1.00     1000     50000    2.5B    1Y, 2M, 3d, 4h, 5m, 6.00s
+```
 
-# Open the Yahoo Finance news page
-ynews()
+## Conclusion
 
-# Get the exchange rate for USD to EUR
-print(change("USDEUR"))
+This script is a powerful tool for analyzing and tracking stock market data in real-time. With easy-to-use functions for retrieving financial data, computing technical indicators, and generating reports, it's a great resource for traders, analysts, and developers alike.
 
-# Get the all-time high for AAPL
-print(ath("AAPL"))
-
-# Get the currency in which AAPL is traded
-print(currency("AAPL"))
-
-# Get the exchange where AAPL is traded
-print(exchange("AAPL"))
-
-# Get the real-time trading volume for AAPL
-print(volume("AAPL"))
-
-# Get the market cap for AAPL
-print(marketcap("AAPL"))
-
-# Get the number of outstanding shares for AAPL
-print(shares("AAPL"))
+---
