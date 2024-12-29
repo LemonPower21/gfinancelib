@@ -1,0 +1,9 @@
+README.md
+setup.py
+gfinancelib/__init__.py
+gfinancelib/main.py
+gfinancelib.egg-info/PKG-INFO
+gfinancelib.egg-info/SOURCES.txt
+gfinancelib.egg-info/dependency_links.txt
+gfinancelib.egg-info/requires.txt
+gfinancelib.egg-info/top_level.txt
